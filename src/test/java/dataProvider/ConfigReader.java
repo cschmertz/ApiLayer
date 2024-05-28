@@ -35,8 +35,12 @@ public class ConfigReader {
         return properties.getProperty("base_Url");
     }
 
-    public String getURL() {
-        return properties.getProperty("URL");
+    public String getEmail(){
+        return properties.getProperty("email");
+    }
+
+    public String getPassword(){
+        return properties.getProperty("password");
     }
 
     public String getUserID() {

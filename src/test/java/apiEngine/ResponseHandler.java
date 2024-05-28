@@ -15,6 +15,7 @@ public class ResponseHandler<T> implements IRestResponse<T> {
     private T data;
     private Response response;
     private Exception e;
+
     private static final Logger LOGGER = Logger.getLogger(ConfigReader.class.getName());
 
     public ResponseHandler(Class<T> t, Response response) throws ResponseException {
@@ -83,5 +84,6 @@ public class ResponseHandler<T> implements IRestResponse<T> {
             LOGGER.log(Level.INFO, "Headers: " + headers);
             return headers;
         }
+
 }
 

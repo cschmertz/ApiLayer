@@ -1,0 +1,6 @@
+Change Log:  
+
+      Used ConcurrentHashMap for scenarioContext to ensure thread safety.
+      Added generic type handling in setContext and getContext methods for type safety.
+      Corrected the method name isContains to containsKey for consistency with Java naming conventions.
+    

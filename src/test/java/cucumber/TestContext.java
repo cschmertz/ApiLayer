@@ -2,6 +2,7 @@ package cucumber;
 
 import apiEngine.EndPoints;
 import dataProvider.ConfigReader;
+import enums.Context;
 
 public class TestContext {
 
@@ -11,7 +12,8 @@ public class TestContext {
     public TestContext() {
         endPoints = new EndPoints(ConfigReader.getInstance().getBaseUrl());
         scenarioContext = new ScenarioContext();
-//        scenarioContext.setContext(Context.USER_ID, ConfigReader.getInstance().getUserID());
+        scenarioContext.setContext(Context.EMAIL, ConfigReader.getInstance().getEmail());
+        scenarioContext.setContext(Context.PASSWORD, ConfigReader.getInstance().getPassword());
     }
 
     public EndPoints getEndPoints() {

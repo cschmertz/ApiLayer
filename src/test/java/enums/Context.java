@@ -1,4 +1,10 @@
 package enums;
 
-public class Context {
+public enum Context {
+
+    EMAIL,
+    PASSWORD,
+    RESPONSE,
+    TOKEN
+
 }
