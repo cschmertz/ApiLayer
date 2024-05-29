@@ -9,5 +9,4 @@ public class TestBase {
     public static void setup() {
         RestAssuredConfig.configureRestAssured();
     }
-
 }

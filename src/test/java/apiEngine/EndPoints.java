@@ -42,10 +42,12 @@ public class EndPoints {
 
     public Response login() {
         LoginRequest loginRequest = new LoginRequest(ConfigReader.getInstance().getEmail(), ConfigReader.getInstance().getPassword());
-        return given()
+        Response response = given()
                 .contentType("application/json")
                 .body(loginRequest)
                 .post(baseUrl + "/login");
+        System.out.println("Response: " + response.asString());
+        return response;
     }
 
 

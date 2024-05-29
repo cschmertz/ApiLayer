@@ -25,9 +25,6 @@ public class UserLoginSteps {
 
     @When("I provide valid login details")
     public void iProvideValidLoginDetails() {
-        if (testContext == null) {
-            throw new IllegalStateException("TestContext is not initialized");
-        }
         EndPoints endPoints = testContext.getEndPoints();
         response = endPoints.login();
         testContext.getScenarioContext().setContext(Context.RESPONSE, response);
