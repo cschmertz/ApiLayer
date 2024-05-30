@@ -43,7 +43,4 @@ public class ConfigReader {
         return properties.getProperty("password");
     }
 
-    public String getUserID() {
-        return properties.getProperty("user_Id");
-    }
 }
