@@ -17,8 +17,7 @@ public class EndPoints {
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String ACCEPT = "Accept";
     private static final String APPLICATION_JSON = "application/json";
-
-    private String baseUrl;
+    public static final String BASE_URL = ConfigReader.getInstance().getBaseUrl();
 
     public EndPoints(String baseUrl) {
         this(baseUrl, null);
@@ -45,7 +44,7 @@ public class EndPoints {
         Response response = given()
                 .contentType("application/json")
                 .body(loginRequest)
-                .post(baseUrl + "/login");
+                .post(BASE_URL + "/login");
         System.out.println("Response: " + response.asString());
         return response;
     }
