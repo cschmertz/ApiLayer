@@ -6,14 +6,21 @@ import enums.Context;
 
 public class TestContext {
 
-    private final EndPoints endPoints;
-    private final ScenarioContext scenarioContext;
+    private static TestContext instance;
+    private EndPoints endPoints;
+    private ScenarioContext scenarioContext;
 
-    public TestContext() {
-        endPoints = new EndPoints(ConfigReader.getInstance().getBaseUrl());
+    private TestContext() {
+        String baseUrl = ConfigReader.getInstance().getBaseUrl();
+        endPoints = new EndPoints(baseUrl);
         scenarioContext = new ScenarioContext();
-        scenarioContext.setContext(Context.EMAIL, ConfigReader.getInstance().getEmail());
-        scenarioContext.setContext(Context.PASSWORD, ConfigReader.getInstance().getPassword());
+    }
+
+    public static synchronized TestContext getInstance() {
+        if (instance == null) {
+            instance = new TestContext();
+        }
+        return instance;
     }
 
     public EndPoints getEndPoints() {

@@ -5,16 +5,12 @@ import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 
 public class DependencyInjector {
-    private static MutablePicoContainer container;
+
+    private static DefaultPicoContainer container;
 
     static {
         container = new DefaultPicoContainer();
-        container.addComponent(TestContext.class);
-    }
-
-    @Before
-    public void setUp() {
-        container.addComponent(TestContext.class, new TestContext());
+        container.addComponent(TestContext.getInstance());
     }
 
     public static TestContext getTestContext() {
