@@ -9,6 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class ResponseHandler<T> implements IRestResponse<T> {
 
@@ -27,63 +32,58 @@ public class ResponseHandler<T> implements IRestResponse<T> {
             if (t == null) {
                 throw new NullPointerException("Class object cannot be null");
             }
-            this.data = t.getDeclaredConstructor().newInstance();
+            String contentType = response.getHeader("Content-Type");
+            if (contentType != null && contentType.contains("application/json")) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                this.data = objectMapper.readValue(response.getBody().asString(), t);
+            } else {
+                this.data = null;
+            }
         } catch (Exception e) {
             throw new ResponseException(e, "Failed to create instance of class " + t.getName());
         }
     }
 
-       @Override
-       public T getBody() {
-           try {
-               data = (T) response.getBody().as(data.getClass());
-           } catch (Exception e) {
-               this.e = e;
-               LOGGER.log(Level.SEVERE, "Error retrieving response body: " + e.getMessage(), e);
-               throw new RuntimeException("Error retrieving response body", e);
-           }
-           return data;
-       }
+    @Override
+    public T getBody() {
+        return data;
+    }
 
-        @Override
-        public String getContent() {
-            return response.getBody().asString();
-        }
+    @Override
+    public String getContent() {
+        return response.getBody().asString();
+    }
 
-        @Override
-        public int getStatusCode() {
-            return response.getStatusCode();
-        }
+    @Override
+    public int getStatusCode() {
+        return response.getStatusCode();
+    }
 
-        @Override
-        public boolean isSuccessful() {
-            int code = response.getStatusCode();
-            return Arrays.asList(200, 201, 202, 203, 204, 205).contains(code);
-        }
+    @Override
+    public boolean isSuccessful() {
+        int code = response.getStatusCode();
+        return code >= 200 && code < 300;
+    }
 
-        @Override
-        public String getStatusDescription () {
-            return response.getStatusLine();
-        }
+    @Override
+    public String getStatusDescription() {
+        return response.getStatusLine();
+    }
 
-        @Override
-        public Response getResponse () {
-            return response;
-        }
+    @Override
+    public Response getResponse() {
+        return response;
+    }
 
-        @Override
-        public Exception getException () {
-            return e;
-        }
+    @Override
+    public Exception getException() {
+        return e;
+    }
 
-        @Override
-        public Map<String, String> getHeaders() {
-            Map<String, String> headers = new HashMap<>();
-            headers.put("Content-Type", "application/json");
-            headers.put("Accept", "application/json");
-            LOGGER.log(Level.INFO, "Headers: " + headers);
-            return headers;
-        }
+    @Override
+    public Map<String, String> getHeaders() {
+        return response.getHeaders().asList().stream().collect(Collectors.toMap(Header::getName, Header::getValue));
+    }
 
 }
 

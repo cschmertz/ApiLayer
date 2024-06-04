@@ -1,6 +1,6 @@
-package apiEngine.responses;
+package apiEngine.responses.LoginResponses;
 
-public class LoginResponse {
+public class HappyPathResponse {
 
     private String token;
 

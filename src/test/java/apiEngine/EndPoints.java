@@ -1,6 +1,6 @@
 package apiEngine;
 
-import apiEngine.requests.LoginRequest;
+import apiEngine.requests.LoginRequests.LoginRequest;
 import dataProvider.ConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -48,6 +48,17 @@ public class EndPoints {
         System.out.println("Response: " + response.asString());
         return response;
     }
+
+    public Response loginWithInvalidEmail() {
+        String invalidEmail = ConfigReader.getInstance().getWrongEmail();
+        String invalidEmailRequest = "{\"email\":\"" + invalidEmail + "\"}";
+        Response response = given()
+                .contentType("application/json")
+                .body(invalidEmailRequest)
+                .post(BASE_URL + "/login");
+        return response;
+    }
+
 
 
 }

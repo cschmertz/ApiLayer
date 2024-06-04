@@ -1,4 +1,4 @@
-package apiEngine.requests;
+package apiEngine.requests.LoginRequests;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
