@@ -4,16 +4,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UnsuccessfulLoginRequest {
+public class SadPathRequest {
 
     @JsonProperty("wrongEmail")
     private String wrongEmail;
 
     // Default constructor is necessary for Jackson
-    public UnsuccessfulLoginRequest() {}
+    public SadPathRequest() {}
 
     // Parameterized constructor for convenience
-    public UnsuccessfulLoginRequest(String wrongEmail) {
+    public SadPathRequest(String wrongEmail) {
         this.wrongEmail = wrongEmail;
     }
 

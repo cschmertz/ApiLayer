@@ -3,7 +3,7 @@ package apiEngine.requests.LoginRequests;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LoginRequest {
+public class HappyPathRequest {
 
     @JsonProperty("email")
     private String email;
@@ -12,10 +12,10 @@ public class LoginRequest {
     private String password;
 
     // Default constructor is necessary for Jackson
-    public LoginRequest() {}
+    public HappyPathRequest() {}
 
     // Parameterized constructor for convenience
-    public LoginRequest(String email, String password) {
+    public HappyPathRequest(String email, String password) {
         this.email = email;
         this.password = password;
     }

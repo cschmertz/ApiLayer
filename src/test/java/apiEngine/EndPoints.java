@@ -1,6 +1,6 @@
 package apiEngine;
 
-import apiEngine.requests.LoginRequests.LoginRequest;
+import apiEngine.requests.LoginRequests.HappyPathRequest;
 import dataProvider.ConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -40,14 +40,19 @@ public class EndPoints {
 
 
     public Response login() {
-        LoginRequest loginRequest = new LoginRequest(ConfigReader.getInstance().getEmail(), ConfigReader.getInstance().getPassword());
+        HappyPathRequest happyPathRequest = new HappyPathRequest(ConfigReader.getInstance().getEmail(), ConfigReader.getInstance().getPassword());
         Response response = given()
                 .contentType("application/json")
-                .body(loginRequest)
+                .body(happyPathRequest)
                 .post(BASE_URL + "/login");
         System.out.println("Response: " + response.asString());
         return response;
     }
+
+    //        String invalidEmail = ConfigReader.getInstance().getWrongEmail();
+    //        String invalidEmailRequest = "{\"email\":\"" + invalidEmail + "\"}";
+
+    //        SadPathRequest unsuccessfulLoginRequest = new SadPathRequest(ConfigReader.getInstance().getWrongEmail());
 
     public Response loginWithInvalidEmail() {
         String invalidEmail = ConfigReader.getInstance().getWrongEmail();
