@@ -1,6 +1,9 @@
 package apiEngine;
 
 import apiEngine.requests.LoginRequests.HappyPathRequest;
+import apiEngine.requests.LoginRequests.SadPathRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dataProvider.ConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -55,11 +58,10 @@ public class EndPoints {
     //        SadPathRequest unsuccessfulLoginRequest = new SadPathRequest(ConfigReader.getInstance().getWrongEmail());
 
     public Response loginWithInvalidEmail() {
-        String invalidEmail = ConfigReader.getInstance().getWrongEmail();
-        String invalidEmailRequest = "{\"email\":\"" + invalidEmail + "\"}";
+        SadPathRequest invalidLoginRequest = new SadPathRequest(ConfigReader.getInstance().getWrongEmail());
         Response response = given()
                 .contentType("application/json")
-                .body(invalidEmailRequest)
+                .body(invalidLoginRequest)
                 .post(BASE_URL + "/login");
         return response;
     }

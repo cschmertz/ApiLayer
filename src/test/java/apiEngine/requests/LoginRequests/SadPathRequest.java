@@ -6,24 +6,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SadPathRequest {
 
-    @JsonProperty("wrongEmail")
-    private String wrongEmail;
+
+    private String email;
 
     // Default constructor is necessary for Jackson
     public SadPathRequest() {}
 
     // Parameterized constructor for convenience
-    public SadPathRequest(String wrongEmail) {
-        this.wrongEmail = wrongEmail;
+    public SadPathRequest(String email) {
+        this.email = email;
     }
 
     // Getters and Setters
-    public String getWrongEmailEmail() {
-        return wrongEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setWrongEmail(String email) {
-        this.wrongEmail = wrongEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
