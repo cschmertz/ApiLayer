@@ -5,6 +5,8 @@ import apiEngine.IRestResponse;
 import apiEngine.ResponseHandler;
 import apiEngine.responses.AdminResponses.CreateUserResponse;
 import apiEngine.responses.LoginResponses.SadPathResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.DependencyInjector;
 import cucumber.TestContext;
 import enums.Context;
@@ -26,14 +28,14 @@ public class CreateUserSteps {
         this.testContext = DependencyInjector.getTestContext();
     }
 
-    @When("I provide valid user details,")
+    @When("I provide valid user details")
     public void iProvideValidUserDetails(){
         EndPoints endPoints = testContext.getEndPoints();
         response = endPoints.createUser();
         testContext.getScenarioContext().setContext(Context.RESPONSE, response);
     }
 
-    @Then("I should receive a successful response with the created user's information.")
+    @Then("I should receive a successful response with the created user's information")
     public void iShouldReceiveASuccessfulResponseWithTheCreatedUserSInformation() throws ResponseException {
         Response response = testContext.getScenarioContext().getContext(Context.RESPONSE);
         IRestResponse<CreateUserResponse> restResponse = new ResponseHandler<>(CreateUserResponse.class, response);

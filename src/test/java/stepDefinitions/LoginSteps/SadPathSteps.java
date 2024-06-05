@@ -26,14 +26,14 @@ public class SadPathSteps {
         this.testContext = DependencyInjector.getTestContext();
     }
 
-    @When("I provide invalid login details,")
+    @When("I provide invalid login details")
     public void iProvideInvalidLoginDetails() {
         EndPoints endPoints = testContext.getEndPoints();
         response = endPoints.loginWithInvalidEmail();
         testContext.getScenarioContext().setContext(Context.RESPONSE, response);
     }
 
-    @Then("I should receive an unsuccessful response.")
+    @Then("I should receive an unsuccessful response")
     public void iShouldReceiveAnUnsuccessfulResponse() throws ResponseException {
         Response response = testContext.getScenarioContext().getContext(Context.RESPONSE);
         IRestResponse<SadPathResponse> restResponse = new ResponseHandler<>(SadPathResponse.class, response);
