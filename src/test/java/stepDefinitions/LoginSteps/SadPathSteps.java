@@ -36,16 +36,10 @@ public class SadPathSteps {
     @Then("I should receive an unsuccessful response.")
     public void iShouldReceiveAnUnsuccessfulResponse() throws ResponseException {
         Response response = testContext.getScenarioContext().getContext(Context.RESPONSE);
-        String contentType = response.getHeader("Content-Type");
-
-        if (contentType != null && contentType.contains("application/json")) {
-            IRestResponse<SadPathResponse> restResponse = new ResponseHandler<>(SadPathResponse.class, response);
-            assertEquals(400, restResponse.getStatusCode());
-            assertEquals("Missing password", restResponse.getBody().getError());
-            System.out.println("Response content: " + restResponse.getContent());
-        } else {
-            throw new RuntimeException("Unsupported content type: " + contentType);
-        }
+        IRestResponse<SadPathResponse> restResponse = new ResponseHandler<>(SadPathResponse.class, response);
+        assertEquals(400, restResponse.getStatusCode());
+        assertEquals("Missing password", restResponse.getBody().getError());
+        System.out.println("Response content: " + restResponse.getContent());
     }
 
 

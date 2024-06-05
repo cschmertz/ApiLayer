@@ -41,7 +41,6 @@ public class EndPoints {
         return request;
     }
 
-
     public Response login() {
         HappyPathRequest happyPathRequest = new HappyPathRequest(ConfigReader.getInstance().getEmail(), ConfigReader.getInstance().getPassword());
         Response response = given()
@@ -51,11 +50,6 @@ public class EndPoints {
         System.out.println("Response: " + response.asString());
         return response;
     }
-
-    //        String invalidEmail = ConfigReader.getInstance().getWrongEmail();
-    //        String invalidEmailRequest = "{\"email\":\"" + invalidEmail + "\"}";
-
-    //        SadPathRequest unsuccessfulLoginRequest = new SadPathRequest(ConfigReader.getInstance().getWrongEmail());
 
     public Response loginWithInvalidEmail() {
         SadPathRequest invalidLoginRequest = new SadPathRequest(ConfigReader.getInstance().getWrongEmail());
