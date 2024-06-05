@@ -12,9 +12,9 @@ import org.junit.runner.RunWith;
                 "junit:target/cucumber-reports/Cucumber.xml",
                 "html:target/cucumber-report.html" },
         monochrome = true,
-        tags = "@Login",
+        tags = "@TEST_EL-30",
         dryRun = false
-
 )
+
 public class TestRunner {
 }

@@ -41,7 +41,4 @@ public class SadPathSteps {
         assertEquals("Missing password", restResponse.getBody().getError());
         System.out.println("Response content: " + restResponse.getContent());
     }
-
-
-
 }

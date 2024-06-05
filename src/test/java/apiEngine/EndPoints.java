@@ -1,5 +1,6 @@
 package apiEngine;
 
+import apiEngine.requests.AdminRequests.CreateUserRequest;
 import apiEngine.requests.LoginRequests.HappyPathRequest;
 import apiEngine.requests.LoginRequests.SadPathRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -60,6 +61,14 @@ public class EndPoints {
         return response;
     }
 
+    public Response createUser() {
+        CreateUserRequest createUserRequest = new CreateUserRequest(ConfigReader.getInstance().getName(), ConfigReader.getInstance().getJob());
+        Response response = given()
+                .contentType("application/json")
+                .body(createUserRequest)
+                .post(BASE_URL + "/users");
+        return response;
+    }
 
 
 }

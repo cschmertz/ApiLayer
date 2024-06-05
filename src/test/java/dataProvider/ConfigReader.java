@@ -45,4 +45,12 @@ public class ConfigReader {
         return properties.getProperty("password");
     }
 
+    public String getName(){
+        return properties.getProperty("name");
+    }
+
+    public String getJob(){
+        return properties.getProperty("job");
+    }
+
 }
