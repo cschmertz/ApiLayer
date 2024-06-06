@@ -1,6 +1,7 @@
 package apiEngine;
 
 import apiEngine.requests.AdminRequests.CreateUserRequest;
+import apiEngine.requests.AdminRequests.UpdateUserRequest;
 import apiEngine.requests.LoginRequests.HappyPathRequest;
 import apiEngine.requests.LoginRequests.SadPathRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -67,6 +68,20 @@ public class EndPoints {
                 .contentType("application/json")
                 .body(createUserRequest)
                 .post(BASE_URL + "/users");
+        return response;
+    }
+
+    public Response updateUser(int userId, UpdateUserRequest updateUserRequest) {
+        Response response = given()
+                .contentType("application/json")
+                .body(updateUserRequest)
+                .put(BASE_URL + "/users/" + userId);
+        return response;
+    }
+
+    public Response deleteUser(int userId) {
+        Response response = given()
+                .delete(BASE_URL + "/users/" + userId);
         return response;
     }
 

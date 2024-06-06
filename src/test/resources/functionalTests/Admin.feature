@@ -16,5 +16,5 @@ Feature: Administrative features
 	#Deletes user
   @DeleteUser
   Scenario: Delete User
-    When I delete a user by providing a user ID,
-    Then I should receive a successful response indicating the user has been deleted.
+    When I delete a user by providing a user ID
+    Then I should receive a successful response indicating the user has been deleted
