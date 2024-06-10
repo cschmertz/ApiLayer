@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ScenarioContext {
+
     private Map<String, Object> scenarioContext;
 
     public ScenarioContext() {
@@ -23,4 +24,5 @@ public class ScenarioContext {
     public boolean containsKey(Context key) {
         return scenarioContext.containsKey(key.toString());
     }
+
 }

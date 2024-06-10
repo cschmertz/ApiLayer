@@ -5,6 +5,7 @@ public enum Context {
     EMAIL,
     PASSWORD,
     RESPONSE,
-    TOKEN
+    TOKEN,
+    USERS_LIST
 
 }

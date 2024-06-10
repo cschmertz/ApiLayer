@@ -18,3 +18,9 @@ Feature: Administrative features
   Scenario: Delete User
     When I delete a user by providing a user ID
     Then I should receive a successful response indicating the user has been deleted
+
+    @ListUsers
+  Scenario: Retrieve a list of users
+    When I request the list of users
+    Then I should receive a successful response with user details
+

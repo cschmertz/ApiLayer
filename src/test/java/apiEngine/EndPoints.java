@@ -85,5 +85,12 @@ public class EndPoints {
         return response;
     }
 
+    public Response getListOfUsers() {
+        Response response = given()
+                .contentType("application/json")
+                .get(BASE_URL + "/users");
+        return response;
+    }
+
 
 }
