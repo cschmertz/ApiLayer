@@ -44,6 +44,7 @@ public class CreateUserSteps {
         Assert.assertNotNull(restResponse.getBody().getCreatedAt());
         Assert.assertEquals("morpheus", restResponse.getBody().getName());
         Assert.assertEquals("leader", restResponse.getBody().getJob());
+        System.out.println("Response Body: " + response.getBody().asString());
     }
 
 }

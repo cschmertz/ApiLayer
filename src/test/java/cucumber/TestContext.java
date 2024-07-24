@@ -1,6 +1,7 @@
 package cucumber;
 
 import apiEngine.EndPoints;
+import apiEngine.RestAssuredConfig;
 import dataProvider.ConfigReader;
 import enums.Context;
 
@@ -14,6 +15,7 @@ public class TestContext {
         String baseUrl = ConfigReader.getInstance().getBaseUrl();
         endPoints = new EndPoints(baseUrl);
         scenarioContext = new ScenarioContext();
+        configureRestAssured();
     }
 
     public static synchronized TestContext getInstance() {
@@ -29,5 +31,10 @@ public class TestContext {
 
     public ScenarioContext getScenarioContext() {
         return scenarioContext;
+    }
+
+
+    private void configureRestAssured() {
+        RestAssuredConfig.configureRestAssured();
     }
 }

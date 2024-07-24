@@ -25,8 +25,8 @@ public class GetListOfUsersSteps {
         this.testContext = DependencyInjector.getTestContext();
     }
 
-    @When("I retrieve the list of users")
-    public void iRetrieveTheListOfUsers() {
+    @When("I request the list of users")
+    public void iRequestTheListOfUsers() {
         EndPoints endPoints = testContext.getEndPoints();
         response = endPoints.getListOfUsers();
         testContext.getScenarioContext().setContext(Context.RESPONSE, response);
@@ -44,4 +44,5 @@ public class GetListOfUsersSteps {
         Assert.assertNotNull(usersList);
         Assert.assertTrue(usersList.size() > 0);
     }
+
 }
