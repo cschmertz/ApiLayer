@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "junit:target/cucumber-reports/Cucumber.xml",
                 "html:target/cucumber-report.html" },
         monochrome = true,
-        tags = "@CreateUser",
+        tags = "@UpdateUser",
         dryRun = false
 )
 
