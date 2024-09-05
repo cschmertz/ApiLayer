@@ -1,4 +1,4 @@
-@Login
+@Login @Suite
 Feature: User Login
 
 	#User is able to Login to the application given the correct credentials - username and password.
