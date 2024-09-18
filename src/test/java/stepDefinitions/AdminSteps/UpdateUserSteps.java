@@ -36,7 +36,7 @@ public class UpdateUserSteps {
     public void iShouldReceiveASuccessfulResponseWithTheUpdatedUsersInformation() throws ResponseException {
         Response response = testContext.getScenarioContext().getContext(Context.RESPONSE);
         IRestResponse<UpdateUserResponse> restResponse = new ResponseHandler<>(UpdateUserResponse.class, response);
-        assertEquals(300, restResponse.getStatusCode());
+        assertEquals(200, restResponse.getStatusCode());
         assertEquals("morpheus", restResponse.getBody().getName());
         assertEquals("zion resident", restResponse.getBody().getJob());
         assertNotNull(restResponse.getBody().getUpdatedAt());

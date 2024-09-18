@@ -3,7 +3,6 @@ package stepDefinitions.LoginSteps;
 import apiEngine.EndPoints;
 import apiEngine.IRestResponse;
 import apiEngine.ResponseHandler;
-import apiEngine.responses.LoginResponses.HappyPathResponse;
 import apiEngine.responses.LoginResponses.SadPathResponse;
 import cucumber.DependencyInjector;
 import cucumber.TestContext;
@@ -13,7 +12,6 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.netbeans.lib.cvsclient.response.ResponseException;
 
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
