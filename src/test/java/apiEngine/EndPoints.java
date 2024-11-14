@@ -10,29 +10,22 @@ import dataProvider.ConfigReader;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
 import java.util.Map;
-
 import static io.restassured.RestAssured.given;
 
 public class EndPoints {
 
     private final RequestSpecification request;
 
-    private static final String CONTENT_TYPE = "Content-Type";
-    private static final String ACCEPT = "Accept";
-    private static final String APPLICATION_JSON = "application/json";
-    public static final String BASE_URL = ConfigReader.getInstance().getBaseUrl();
-
     public EndPoints(String baseUrl) {
         this(baseUrl, null);
     }
 
     public EndPoints(String baseUrl, Map<String, String> additionalHeaders) {
-        RestAssured.baseURI = baseUrl;
-        request = given();
-        request.header(CONTENT_TYPE, APPLICATION_JSON);
-        request.header(ACCEPT, APPLICATION_JSON);
+        request = given()
+                .baseUri(baseUrl)
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json");
 
         if (additionalHeaders != null) {
             additionalHeaders.forEach(request::header);
@@ -44,53 +37,49 @@ public class EndPoints {
     }
 
     public Response login() {
-        HappyPathRequest happyPathRequest = new HappyPathRequest(ConfigReader.getInstance().getEmail(), ConfigReader.getInstance().getPassword());
-        Response response = given()
-                .contentType("application/json")
+        HappyPathRequest happyPathRequest = new HappyPathRequest(
+                ConfigReader.getInstance().getEmail(),
+                ConfigReader.getInstance().getPassword()
+        );
+        
+        return request
                 .body(happyPathRequest)
-                .post(BASE_URL + "/login");
-        System.out.println("Response: " + response.asString());
-        return response;
+                .post("/login");
     }
 
     public Response loginWithInvalidEmail() {
         SadPathRequest invalidLoginRequest = new SadPathRequest(ConfigReader.getInstance().getWrongEmail());
-        Response response = given()
-                .contentType("application/json")
+        
+        return request
                 .body(invalidLoginRequest)
-                .post(BASE_URL + "/login");
-        return response;
+                .post("/login");
     }
 
     public Response createUser() {
-        CreateUserRequest createUserRequest = new CreateUserRequest(ConfigReader.getInstance().getName(), ConfigReader.getInstance().getJob());
-        Response response = given()
-                .contentType("application/json")
+        CreateUserRequest createUserRequest = new CreateUserRequest(
+                ConfigReader.getInstance().getName(),
+                ConfigReader.getInstance().getJob()
+        );
+
+        return request
                 .body(createUserRequest)
-                .post(BASE_URL + "/users");
-        return response;
+                .post("/users");
     }
 
     public Response updateUser(int userId, UpdateUserRequest updateUserRequest) {
-        Response response = given()
-                .contentType("application/json")
+        return request
                 .body(updateUserRequest)
-                .put(BASE_URL + "/users/" + userId);
-        return response;
+                .put("/users/" + userId);
     }
 
     public Response deleteUser(int userId) {
-        Response response = given()
-                .delete(BASE_URL + "/users/" + userId);
-        return response;
+        return request
+                .delete("/users/" + userId);
     }
 
     public Response getListOfUsers() {
-        Response response = given()
-                .contentType("application/json")
-                .get(BASE_URL + "/users");
-        return response;
+        return request
+                .get("/users");
     }
-
-
 }
+

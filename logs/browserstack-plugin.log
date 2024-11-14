@@ -1,0 +1,6 @@
+18:59:32.224 [ApplicationImpl pooled thread 11] INFO  c.b.l.BrowserStackRunExtension - cucumber java
+18:59:32.224 [ApplicationImpl pooled thread 11] INFO  com.browserstack.utils.Helpers - null
+18:59:32.225 [ApplicationImpl pooled thread 11] INFO  com.browserstack.utils.Helpers - /Users/conorschmertz/.m2/repository/com/browserstack/browserstack-java-sdk/1.23.4/browserstack-java-sdk-1.23.4.jar
+18:59:32.225 [ApplicationImpl pooled thread 11] INFO  c.b.l.BrowserStackRunExtension - Agent path: /Users/conorschmertz/.m2/repository/com/browserstack/browserstack-java-sdk/1.23.4/browserstack-java-sdk-1.23.4.jar
+18:59:32.225 [ApplicationImpl pooled thread 11] INFO  c.b.l.BrowserStackRunExtension - Adding Browserstack SDK javaagent argline
+18:59:32.225 [ApplicationImpl pooled thread 11] INFO  c.b.l.BrowserStackRunExtension - Plugin version: v1.1.6
